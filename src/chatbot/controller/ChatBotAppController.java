@@ -2,16 +2,19 @@ package chatbot.controller;
 
 import javax.swing.JOptionPane;
 
+import chatbot.model.ChatBot;
 import chatbot.view.ChatBotView;
 
 public class ChatBotAppController
 {
 
 	private ChatBotView applicationView;
+	private ChatBot mySillyChatBot;
 	
 	public ChatBotAppController()
 	{
 		applicationView = new ChatBotView(this);
+		mySillyChatBot = new ChatBot("DumbleDoob");
 	}
 	
 	public void start()
