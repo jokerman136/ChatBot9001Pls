@@ -1,5 +1,7 @@
 package chatbot.model;
 
+import java.util.ArrayList;
+
 /**
  * 
  * @author rjon7928
@@ -7,7 +9,7 @@ package chatbot.model;
  */
 public class ChatBot
 {
-
+	private ArrayList<String> memeList;
 	private String name;
 	private int chatCount;
 
@@ -31,10 +33,7 @@ public class ChatBot
 	}
 
 	/**
-	 * This is a really important method. Add lots of lines
-	 * see more lines
-	 * and even more
-	 * wOw...
+	 *
 	 * @return
 	 */
 	public int getChatCount()
@@ -71,8 +70,8 @@ public class ChatBot
 		if(input.equals("Bai"))
 		{
 			okToQuit = true;
-			return okToQuit;
 		}
-		else return okToQuit;
+		return okToQuit;
+		
 	}
 }
