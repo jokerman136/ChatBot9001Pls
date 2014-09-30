@@ -22,6 +22,18 @@ public class ChatBot
 		this.name = name;
 		chatCount = 0;
 	}
+	
+	/**
+	 * Processes input from the user against the checker methods. Returns the next output for the view.
+	 * @param currentInput The supplied text.
+	 * @return The processed text based on the checker or other methods.
+	 */
+	public String proccessText(String currentInput)
+	{
+		String result = "";
+		
+		return result;
+	}
 
 	/**
 	 * Returns the name of the ChatBot object.
