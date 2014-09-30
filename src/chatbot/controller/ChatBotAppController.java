@@ -21,16 +21,18 @@ public class ChatBotAppController
 	{
 		String result = applicationView.showChatBot("Ricky");
 		
-		if(result.equalsIgnoreCase("exit"))
+		while(!mySillyChatBot.quitChecker(result))
 		{
-			quit();
+			result = applicationView.showChatBot(result);
 		}
+		
+		quit();
 	}
-
+	
 	private void quit()
 	{
 		JOptionPane.showMessageDialog(null, "Good bye cruel world!");
 		System.exit(0);
-
 	}
+		
 }
