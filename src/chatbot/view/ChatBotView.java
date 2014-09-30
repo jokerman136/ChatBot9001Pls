@@ -4,6 +4,11 @@ import javax.swing.JOptionPane;
 
 import chatbot.controller.ChatBotAppController;
 
+/**
+ * 
+ * @author rjon7928
+ *
+ */
 public class ChatBotView
 {
 	private ChatBotAppController baseController;

@@ -67,7 +67,10 @@ public class ChatBot
 	{
 		boolean okToQuit = false;
 		
-		if(input.equals("Bai"))
+		/**
+		 * Need to have NOT null AND input
+		 */
+		if(input != null && input.equals("Bai"))
 		{
 			okToQuit = true;
 		}
