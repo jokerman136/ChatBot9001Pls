@@ -9,7 +9,7 @@ import chatbot.view.ChatBotView;
 /**
  * Runs the ChatBot project. Owns the model and associated views.
  * @author Richard Jones
- * @version 1.2 10/2/14
+ * @version 1.2 10/2/14 - Cleaned the quit method.
  */
 public class ChatBotAppController
 {
@@ -47,6 +47,7 @@ public class ChatBotAppController
 		 */
 		while(!mySillyChatBot.quitChecker(result))
 		{
+			result = mySillyChatBot.proccessText(result);
 			result = applicationView.showChatBot(result);
 		}
 		
