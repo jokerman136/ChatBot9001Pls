@@ -5,11 +5,19 @@ import javax.swing.JOptionPane;
 import chatbot.model.ChatBot;
 import chatbot.view.ChatBotView;
 
+
+/**
+ * Runs the ChatBot project. Owns the model and associated views.
+ * @author Richard Jones
+ * @version 1.2 10/2/14
+ */
 public class ChatBotAppController
 {
 
 	private ChatBotView applicationView;
 	private ChatBot mySillyChatBot;
+	private String startMessage;
+	private String quitMessage;
 	
 
 	/**
@@ -19,14 +27,20 @@ public class ChatBotAppController
 	{
 		applicationView = new ChatBotView(this);
 		mySillyChatBot = new ChatBot("DumbleDoob");
+		startMessage = "Welcome to the " + mySillyChatBot.getName() + "ChatBot9001. What is your name?";
+		quitMessage = "goodbye cruel user :(";
 	}
-
+	
+	public ChatBot getMySillyChatBot()
+	{
+		return mySillyChatBot;
+	}
 	/**
 	 * Starts the method that begins the while loop.
 	 */
 	public void start()
 	{
-		String result = applicationView.showChatBot("Ricky");
+		String result = applicationView.showChatBot(startMessage);
 		
 		/**
 		 * Keeps the program running until the quit command,"Bai", is typed.
@@ -44,7 +58,7 @@ public class ChatBotAppController
 	 */
 	private void quit()
 	{
-		JOptionPane.showMessageDialog(null, "Goodbye cruel world!");
+		applicationView.showChatBotMessage(quitMessage);
 		System.exit(0);
 	}
 		
