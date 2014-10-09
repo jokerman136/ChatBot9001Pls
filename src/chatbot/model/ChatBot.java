@@ -84,16 +84,36 @@ public class ChatBot
 	public String proccessText(String currentInput)
 	{
 		String result = "";
-		
-		if(memeChecker(currentInput))
+
+		int randomPosition = (int) (Math.random() * 3);
+
+		if (randomPosition == 0)
 		{
-			result = "wow, " + currentInput + " is a meme trololo!";
+			// stringChecker here
+			if(stringChecker(currentInput))
+			{
+				result = "too long";
+			}
+			else
+			{
+				result = "short words";
+			}
+		}
+		else if (randomPosition == 1)
+		{
+			// content checker here
 		}
 		else
 		{
-			result = "not a meme, try again";
+			if (memeChecker(currentInput))
+			{
+				result = "wow, " + currentInput + " is a meme trololo!";
+			}
+			else
+			{
+				result = "not a meme, try again";
+			}
 		}
-		
 		return result;
 	}
 
@@ -105,21 +125,28 @@ public class ChatBot
 		chatCount++;
 	}
 
+	// private boolean contentChecker()
+	
+	private boolean stringChecker(String input)
+	{
+		boolean tooLongString = false;
+		
+		if (input.length() > 21)
+		{
+			tooLongString = true;
+			return tooLongString;
+		}
+		else return tooLongString;
+		
+	}
+	
 	private boolean memeChecker(String input)
 	{
 		boolean isAMeme = false;
 
 		for (String currentMeme : memeList)
 		{
-			if(input.equalsIgnoreCase(currentMeme))
-			{
-				isAMeme = true;
-			}
-		}
-		
-		for(int loopCounter = 0; loopCounter < memeList.size(); loopCounter++)
-		{
-			if(input.equalsIgnoreCase(memeList.get(loopCounter)))
+			if (input.equalsIgnoreCase(currentMeme))
 			{
 				isAMeme = true;
 			}

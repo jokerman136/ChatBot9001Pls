@@ -9,7 +9,7 @@ import chatbot.view.ChatBotView;
 /**
  * Runs the ChatBot project. Owns the model and associated views.
  * @author Richard Jones
- * @version 1.2 10/2/14 - Cleaned the quit method.
+ * @version 1.2 10/9/14 - Cleaned the quit method.
  */
 public class ChatBotAppController
 {
