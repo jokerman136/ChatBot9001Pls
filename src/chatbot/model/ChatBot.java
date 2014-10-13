@@ -13,6 +13,7 @@ public class ChatBot
 	private ArrayList<String> memeList;
 	private String name;
 	private int chatCount;
+	private ArrayList<String> contentList;
 
 	/**
 	 * Creates a ChatBot object with supplied name and initializes current #
@@ -24,10 +25,15 @@ public class ChatBot
 	public ChatBot(String name)
 	{
 		memeList = new ArrayList<String>();
+		contentList = new ArrayList<String>();
 		this.name = name;
 		chatCount = 0;
 		fillTheMemeList();
+		fillTheContentList();
 	}
+	
+	
+
 
 	/**
 	 * Returns the name of the ChatBot object.
@@ -72,6 +78,17 @@ public class ChatBot
 		memeList.add("harlem shake");
 		memeList.add("rickrolled");
 	}
+	
+	private void fillTheContentList()
+	{
+		contentList.add("doom");
+		contentList.add("pizza");
+		contentList.add("mountain dew");
+		contentList.add("computers");
+		contentList.add("shoes");
+		contentList.add("ivan");
+		contentList.add("CSGO");
+	}
 
 	/**
 	 * Processes input from the user against the checker methods. Returns the
@@ -101,7 +118,14 @@ public class ChatBot
 		}
 		else if (randomPosition == 1)
 		{
-			// content checker here
+			if (contentChecker(currentInput))
+			{
+				result = "wow, " + currentInput + " is something I personally love!";
+			}
+			else
+			{
+				result = "Meh, I don't really care about " + currentInput;
+			}
 		}
 		else
 		{
@@ -125,7 +149,19 @@ public class ChatBot
 		chatCount++;
 	}
 
-	// private boolean contentChecker()
+	private boolean contentChecker(String input)
+	{
+		boolean contThis = false;
+		
+		for (String currentContent : contentList)
+		{
+			if(input.contains(currentContent))
+			{
+				contThis = true;
+			}
+		}
+		return contThis;
+	}
 	
 	private boolean stringChecker(String input)
 	{
