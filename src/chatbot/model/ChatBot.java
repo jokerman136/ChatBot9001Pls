@@ -46,8 +46,8 @@ public class ChatBot
 	}
 
 	/**
-	 *
-	 * @return
+	 * Sets the integer for the chat count.
+	 * @return 
 	 */
 	public int getChatCount()
 	{
@@ -64,7 +64,10 @@ public class ChatBot
 	{
 		this.name = name;
 	}
-
+	
+	/**
+	 * Creates a list of memes that the memechecker will check.
+	 */
 	private void fillTheMemeList()
 	{
 		memeList.add("kitties");
@@ -79,6 +82,9 @@ public class ChatBot
 		memeList.add("rickrolled");
 	}
 	
+	/**
+	 * Creates a list of key terms that will be checked by the content checker.
+	 */
 	private void fillTheContentList()
 	{
 		contentList.add("doom");
@@ -118,6 +124,9 @@ public class ChatBot
 		}
 		else if (randomPosition == 1)
 		{
+			/**
+			 * If statement that checks if the input matches anything from the content list.
+			 */
 			if (contentChecker(currentInput))
 			{
 				result = "wow, " + currentInput + " is something I personally love!";
@@ -129,6 +138,9 @@ public class ChatBot
 		}
 		else
 		{
+			/**
+			 * If statement that checks the input if it matches with anything from the meme list.
+			 */
 			if (memeChecker(currentInput))
 			{
 				result = "wow, " + currentInput + " is a meme trololo!";
@@ -163,6 +175,11 @@ public class ChatBot
 		return contThis;
 	}
 	
+	/**
+	 * This is the string checker to check if the input is too long or too short.
+	 * @param input Takes the input from the user to check.
+	 * @return Returns the true/false value depending on the input length.
+	 */
 	private boolean stringChecker(String input)
 	{
 		boolean tooLongString = false;
@@ -176,6 +193,11 @@ public class ChatBot
 		
 	}
 	
+	/**
+	 * Creates the meme checker that takes input and check it with the meme list.
+	 * @param input Take the input from user to match with any memes in the meme list.
+	 * @return Returns weather the input is a meme or not.
+	 */
 	private boolean memeChecker(String input)
 	{
 		boolean isAMeme = false;
