@@ -3,6 +3,7 @@ package chatbot.controller;
 import javax.swing.JOptionPane;
 
 import chatbot.model.ChatBot;
+import chatbot.view.ChatBotFrame;
 import chatbot.view.ChatBotView;
 
 
@@ -18,7 +19,10 @@ public class ChatBotAppController
 	private ChatBot mySillyChatBot;
 	private String startMessage;
 	private String quitMessage;
-	
+	/**
+	 * Reference to the GUI JFrame object for the app.
+	 */
+	private ChatBotFrame appFrame;
 
 	/**
 	 * gives a name to the ChatBot.
@@ -26,6 +30,7 @@ public class ChatBotAppController
 	public ChatBotAppController()
 	{
 		applicationView = new ChatBotView(this);
+		appFrame = new ChatBotFrame(this);
 		mySillyChatBot = new ChatBot("DumbleDoob");
 		startMessage = "Welcome to the " + mySillyChatBot.getName() + "ChatBot9001. What is your name?";
 		quitMessage = "goodbye cruel user :(";
@@ -45,13 +50,13 @@ public class ChatBotAppController
 		/**
 		 * Keeps the program running until the quit command,"Bai", is typed.
 		 */
-		while(!mySillyChatBot.quitChecker(result))
-		{
-			result = mySillyChatBot.proccessText(result);
-			result = applicationView.showChatBot(result);
-		}
-		
-		quit();
+//		while(!mySillyChatBot.quitChecker(result))
+//		{
+//			result = mySillyChatBot.proccessText(result);
+//			result = applicationView.showChatBot(result);
+//		}
+//		
+//		quit();
 	}
 	
 	/**
