@@ -27,7 +27,8 @@ public class ChatBotPanel extends JPanel
 		firstTextField = new JTextField(25);
 		baseLayout = new SpringLayout();
 		
-		chatArea = new JTextArea(5,20);
+		
+		chatArea = new JTextArea(12,45);
 		chatPane = new JScrollPane(chatArea);
 		
 		setupPane();
@@ -66,10 +67,11 @@ public class ChatBotPanel extends JPanel
 		 */
 		baseLayout.putConstraint(SpringLayout.SOUTH, firstButton, -10, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, firstButton, -33, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextField, -6, SpringLayout.NORTH, firstButton);
-		baseLayout.putConstraint(SpringLayout.EAST, firstTextField, -34, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatPane, 50, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, chatPane, 20, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, firstTextField, 1, SpringLayout.NORTH, firstButton);
+		baseLayout.putConstraint(SpringLayout.EAST, firstTextField, -6, SpringLayout.WEST, firstButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatPane, 25, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, chatPane, 33, SpringLayout.WEST, this);
+		
 	}
 	
 	private void setupListeners()

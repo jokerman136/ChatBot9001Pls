@@ -25,7 +25,7 @@ public class ChatBotAppController
 	private ChatBotFrame appFrame;
 
 	/**
-	 * gives a name to the ChatBot.
+	 * Constructor for the chatbot appcontroller.
 	 */
 	public ChatBotAppController()
 	{

@@ -15,11 +15,14 @@ public class ChatBotFrame extends JFrame
 		setupFrame();
 	}
 	
+	/**
+	 * Changes the setup and size of the frame.
+	 */
 	private void setupFrame()
 	{
 		
 		this.setContentPane(basePanel);
-		this.setSize(400, 400);
+		this.setSize(600, 350);
 		setVisible(true);
 	}
 }
