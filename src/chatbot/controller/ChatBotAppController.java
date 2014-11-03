@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import chatbot.model.ChatBot;
 import chatbot.view.ChatBotFrame;
+import chatbot.view.ChatBotPanel;
 import chatbot.view.ChatBotView;
 
 
@@ -26,6 +27,7 @@ public class ChatBotAppController
 
 	/**
 	 * Constructor for the chatbot appcontroller.
+	 * TO SEND MESSAGES TO OTHER PACKAGES
 	 */
 	public ChatBotAppController()
 	{
@@ -45,18 +47,28 @@ public class ChatBotAppController
 	 */
 	public void start()
 	{
-		String result = applicationView.showChatBot(startMessage);
+		
+		((ChatBotPanel) appFrame.getContentPane()).showTextMessage(startMessage);
+		
+		//ChatBotPanel testPanel = (ChatBotPanel) appFrame.getContentPane();
+		// testPanel.showTextMessage(startMessage);
 		
 		/**
 		 * Keeps the program running until the quit command,"Bai", is typed.
 		 */
-//		while(!mySillyChatBot.quitChecker(result))
-//		{
-//			result = mySillyChatBot.proccessText(result);
-//			result = applicationView.showChatBot(result);
-//		}
-//		
-//		quit();
+		
+	}
+	
+	public String getChatBotDialog(String input)
+	{
+		String result = "";
+		if(mySillyChatBot.quitChecker(input))
+		{
+			quit();
+		}	
+		result = mySillyChatBot.proccessText(input);
+			
+		return result;
 	}
 	
 	/**

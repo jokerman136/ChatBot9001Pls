@@ -26,8 +26,6 @@ public class ChatBotPanel extends JPanel
 		firstButton = new JButton("Click the button... It clicks ducks.");
 		firstTextField = new JTextField(25);
 		baseLayout = new SpringLayout();
-		
-		
 		chatArea = new JTextArea(12,45);
 		chatPane = new JScrollPane(chatArea);
 		
@@ -80,10 +78,17 @@ public class ChatBotPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				firstTextField.setText(firstTextField.getText()+ " (͡° ͜ʖ ͡°)");
+				String currentInput= firstTextField.getText();
+				String result = baseController.getChatBotDialog(currentInput);
+				showTextMessage(currentInput);
+				showTextMessage(result);
+				firstTextField.setText("");
 			}
 		});
-
 	}
 	
+	public void showTextMessage(String userInput)
+	{
+		chatArea.append("\n" + userInput);
+	}
 }

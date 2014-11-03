@@ -14,6 +14,7 @@ public class ChatBot
 	private String name;
 	private int chatCount;
 	private ArrayList<String> contentList;
+	private ChatBotUser myUser;
 
 	/**
 	 * Creates a ChatBot object with supplied name and initializes current #
@@ -28,6 +29,7 @@ public class ChatBot
 		contentList = new ArrayList<String>();
 		this.name = name;
 		chatCount = 0;
+		myUser = new ChatBotUser();
 		fillTheMemeList();
 		fillTheContentList();
 	}
@@ -52,6 +54,16 @@ public class ChatBot
 	public int getChatCount()
 	{
 		return chatCount;
+	}
+
+	public ChatBotUser getMyUser()
+	{
+		return myUser;
+	}
+
+	public void setMyUser(ChatBotUser myUser)
+	{
+		this.myUser = myUser;
 	}
 
 	/**
@@ -107,8 +119,14 @@ public class ChatBot
 	public String proccessText(String currentInput)
 	{
 		String result = "";
-
-		int randomPosition = (int) (Math.random() * 3);
+		
+		if(getChatCount() < 7)
+		{
+			//Ask Questions about all data memebers here
+			//you will need ifs or a switch
+		}
+		
+		int randomPosition = (int) (Math.random() * 4);
 
 		if (randomPosition == 0)
 		{
@@ -136,7 +154,7 @@ public class ChatBot
 				result = "Meh, I don't really care about " + currentInput;
 			}
 		}
-		else
+		else if( randomPosition == 2)
 		{
 			/**
 			 * If statement that checks the input if it matches with anything from the meme list.
@@ -150,6 +168,11 @@ public class ChatBot
 				result = "not a meme, try again";
 			}
 		}
+		else
+		{
+			//Talk aobut the suser
+		}
+		updateChatCount();
 		return result;
 	}
 
@@ -161,6 +184,11 @@ public class ChatBot
 		chatCount++;
 	}
 
+	/**
+	 * 
+	 * @param input
+	 * @return
+	 */
 	private boolean contentChecker(String input)
 	{
 		boolean contThis = false;
