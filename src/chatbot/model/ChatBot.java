@@ -16,6 +16,7 @@ public class ChatBot
 	private ArrayList<String> contentList;
 	private ChatBotUser myUser;
 	private ArrayList<String> userInputList;
+	private double weight;
 
 	/**
 	 * Creates a ChatBot object with supplied name and initializes current #
@@ -35,9 +36,6 @@ public class ChatBot
 		fillTheMemeList();
 		fillTheContentList();
 	}
-	
-	
-
 
 	/**
 	 * Returns the name of the ChatBot object.
@@ -51,7 +49,8 @@ public class ChatBot
 
 	/**
 	 * Sets the integer for the chat count.
-	 * @return 
+	 * 
+	 * @return
 	 */
 	public int getChatCount()
 	{
@@ -78,7 +77,7 @@ public class ChatBot
 	{
 		this.name = name;
 	}
-	
+
 	/**
 	 * Creates a list of memes that the memechecker will check.
 	 */
@@ -96,7 +95,7 @@ public class ChatBot
 		memeList.add("rickrolled");
 		memeList.add("( ͡° ͜ʖ ͡°)");
 	}
-	
+
 	/**
 	 * Creates a list of key terms that will be checked by the content checker.
 	 */
@@ -122,91 +121,112 @@ public class ChatBot
 	public String proccessText(String currentInput)
 	{
 		String result = "";
-		
-		if(getChatCount() < 7)
-		{
-			//Ask Questions about all data memebers here
-			//you will need ifs or a switch
-		}
-		
-		int randomPosition = (int) (Math.random() * 6);
 
-		if (randomPosition == 0)
+		if (getChatCount() < 7)
 		{
-			// stringChecker here
-			if(stringChecker(currentInput))
+			// Ask Questions about all data memebers here
+			// you will need ifs or a switch
+			if (getChatCount() == 0)
 			{
-				result = "too long";
+				myUser.setUserName(currentInput);
+				result = "Good name " + myUser.getUserName() + " how old are you?";
+			}
+			else if (getChatCount() == 1)
+			{
+				int userAge = Integer.parseInt(currentInput);
+				myUser.setAge(userAge);
+			}
+			// continue for other user info fields
+		}
+
+		else if (currentInput != null && currentInput.length() > 0)
+		{
+			int randomPosition = (int) (Math.random() * 6);
+
+			if (randomPosition == 0)
+			{
+				// stringChecker here
+				if (stringChecker(currentInput))
+				{
+					result = "too long";
+				}
+				else
+				{
+					result = "short words";
+				}
+			}
+			else if (randomPosition == 1)
+			{
+				/**
+				 * If statement that checks if the input matches anything from
+				 * the content list.
+				 */
+				if (contentChecker(currentInput))
+				{
+					result = "wow, " + currentInput + " is something I personally love!";
+				}
+				else
+				{
+					result = "Meh, I don't really care about " + currentInput;
+				}
+			}
+			else if (randomPosition == 2)
+			{
+				/**
+				 * If statement that checks the input if it matches with
+				 * anything from the meme list.
+				 */
+				if (memeChecker(currentInput))
+				{
+					result = "wow, " + currentInput + " is a meme trololo!";
+				}
+				else
+				{
+					result = "not a meme, try again";
+				}
+			}
+			else if (randomPosition == 3)
+			{
+				// Talk about the user here
+			}
+			else if (randomPosition == 4)
+			{
+				// add to our list
+				userInputList.add(currentInput);
+				result = "Thank you for the comment";
 			}
 			else
 			{
-				result = "short words";
+				if (userInputChecker(currentInput))
+				{
+
+				}
+				else
+				{
+
+				}
 			}
-		}
-		else if (randomPosition == 1)
-		{
-			/**
-			 * If statement that checks if the input matches anything from the content list.
-			 */
-			if (contentChecker(currentInput))
-			{
-				result = "wow, " + currentInput + " is something I personally love!";
-			}
-			else
-			{
-				result = "Meh, I don't really care about " + currentInput;
-			}
-		}
-		else if( randomPosition == 2)
-		{
-			/**
-			 * If statement that checks the input if it matches with anything from the meme list.
-			 */
-			if (memeChecker(currentInput))
-			{
-				result = "wow, " + currentInput + " is a meme trololo!";
-			}
-			else
-			{
-				result = "not a meme, try again";
-			}
-		}
-		else if(randomPosition == 3)
-		{
-			//Talk about the user here
-		}
-		else if(randomPosition == 4)
-		{
-			//add to our list
-			userInputList.add(currentInput);
-			result = "Thank you for the comment";
 		}
 		else
 		{
-			if(userInputChecker(currentInput))
-			{
-				
-			}
-			else
-			{
-				
-			}
+
 		}
 		updateChatCount();
 		return result;
 	}
-	
+
 	private boolean userInputChecker(String userInput)
 	{
 		boolean matchesInput = false;
-		
-		for(int loopCount = 0; loopCount < userInputList.size(); loopCount++)
+
+		for (int loopCount = 0; loopCount < userInputList.size(); loopCount++)
 		{
-			if(userInput.equalsIgnoreCase(userInputList.get(loopCount)))
+			if (userInput.equalsIgnoreCase(userInputList.get(loopCount)))
 			{
 				matchesInput = true;
 				userInputList.remove(loopCount);
-				loopCount--; //When removing, manually adjust loop counter back by one so no skipping.
+				loopCount--; // When removing, manually adjust loop counter back
+							 // by one so no skipping.
 			}
 		}
 		return matchesInput;
@@ -225,41 +245,50 @@ public class ChatBot
 	 * @param input
 	 * @return
 	 */
+	
 	private boolean contentChecker(String input)
 	{
 		boolean contThis = false;
-		
+
 		for (String currentContent : contentList)
 		{
-			if(input.contains(currentContent))
+			if (input.contains(currentContent))
 			{
 				contThis = true;
 			}
 		}
 		return contThis;
 	}
-	
+
 	/**
-	 * This is the string checker to check if the input is too long or too short.
-	 * @param input Takes the input from the user to check.
+	 * This is the string checker to check if the input is too long or too
+	 * short.
+	 * 
+	 * @param input
+	 *            Takes the input from the user to check.
 	 * @return Returns the true/false value depending on the input length.
 	 */
 	private boolean stringChecker(String input)
 	{
 		boolean tooLongString = false;
-		
+
 		if (input.length() > 21)
 		{
 			tooLongString = true;
 			return tooLongString;
 		}
-		else return tooLongString;
-		
+		else
+			return tooLongString;
+
 	}
-	
+
 	/**
-	 * Creates the meme checker that takes input and check it with the meme list.
-	 * @param input Take the input from user to match with any memes in the meme list.
+	 * Creates the meme checker that takes input and check it with the meme
+	 * list.
+	 * 
+	 * @param input
+	 *            Take the input from user to match with any memes in the meme
+	 *            list.
 	 * @return Returns weather the input is a meme or not.
 	 */
 	private boolean memeChecker(String input)

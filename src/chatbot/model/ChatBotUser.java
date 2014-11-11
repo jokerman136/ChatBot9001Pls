@@ -8,6 +8,8 @@ public class ChatBotUser
 	private int age;
 	private boolean isWizard;
 	private boolean needsACookie;
+	private double weight;
+	
 	
 	public ChatBotUser()
 	{
@@ -15,6 +17,7 @@ public class ChatBotUser
 		this.age = -999;
 		this.isWizard = true;
 		this.needsACookie = false;
+		this.weight = 534.4;
 	}
 	public String getUserName()
 	{
@@ -31,6 +34,14 @@ public class ChatBotUser
 	public boolean isNeedsACookie()
 	{
 		return needsACookie;
+	}
+	public double getWeight()
+	{
+		return weight;
+	}
+	public void setWeight(double weight)
+	{
+		this.weight = weight;
 	}
 	public void setUserName(String userName)
 	{
