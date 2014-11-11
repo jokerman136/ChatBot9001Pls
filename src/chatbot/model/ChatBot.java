@@ -245,7 +245,6 @@ public class ChatBot
 	 * @param input
 	 * @return
 	 */
-	
 	private boolean contentChecker(String input)
 	{
 		boolean contThis = false;
