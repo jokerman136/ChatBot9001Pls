@@ -34,7 +34,7 @@ public class ChatBotAppController
 		applicationView = new ChatBotView(this);
 		appFrame = new ChatBotFrame(this);
 		mySillyChatBot = new ChatBot("DumbleDoob");
-		startMessage = "Welcome to the " + mySillyChatBot.getName() + "ChatBot9001. What is your name?";
+		startMessage = "Welcome to the " + mySillyChatBot.getName() + ", ChatBot9001. What is your name?";
 		quitMessage = "goodbye cruel user :(";
 	}
 	
@@ -48,25 +48,22 @@ public class ChatBotAppController
 	public void start()
 	{
 		
-		((ChatBotPanel) appFrame.getContentPane()).showTextMessage(startMessage);
+		//((ChatBotPanel) appFrame.getContentPane()).showTextMessage(startMessage);
 		
-		//ChatBotPanel testPanel = (ChatBotPanel) appFrame.getContentPane();
-		// testPanel.showTextMessage(startMessage);
+		ChatBotPanel testPanel = (ChatBotPanel) appFrame.getContentPane();
+		testPanel.showTextMessage(startMessage);
 		
 		/**
 		 * Keeps the program running until the quit command,"Bai", is typed.
 		 */
 		
 	}
-	
-	public String getChatBotDialog(String input)
+	public String sendTextToChatBot(String userInput)
 	{
 		String result = "";
-		if(mySillyChatBot.quitChecker(input))
-		{
-			quit();
-		}	
-		result = mySillyChatBot.proccessText(input);
+		
+	
+		result = mySillyChatBot.proccessText(userInput);
 			
 		return result;
 	}

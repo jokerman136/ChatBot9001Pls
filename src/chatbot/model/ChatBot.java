@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * The ChatBot model class. Used for checking and manipulating Strings.
  * 
  * @author rjon7928
- * @version 1.1 9/26/14
+ * @version 1.3 11/11/14
  */
 public class ChatBot
 {
@@ -15,6 +15,7 @@ public class ChatBot
 	private int chatCount;
 	private ArrayList<String> contentList;
 	private ChatBotUser myUser;
+	private ArrayList<String> userInputList;
 
 	/**
 	 * Creates a ChatBot object with supplied name and initializes current #
@@ -26,6 +27,7 @@ public class ChatBot
 	public ChatBot(String name)
 	{
 		memeList = new ArrayList<String>();
+		userInputList = new ArrayList<String>();
 		contentList = new ArrayList<String>();
 		this.name = name;
 		chatCount = 0;
@@ -92,6 +94,7 @@ public class ChatBot
 		memeList.add("grumpy cat");
 		memeList.add("harlem shake");
 		memeList.add("rickrolled");
+		memeList.add("( ͡° ͜ʖ ͡°)");
 	}
 	
 	/**
@@ -126,7 +129,7 @@ public class ChatBot
 			//you will need ifs or a switch
 		}
 		
-		int randomPosition = (int) (Math.random() * 4);
+		int randomPosition = (int) (Math.random() * 6);
 
 		if (randomPosition == 0)
 		{
@@ -168,12 +171,45 @@ public class ChatBot
 				result = "not a meme, try again";
 			}
 		}
+		else if(randomPosition == 3)
+		{
+			//Talk about the user here
+		}
+		else if(randomPosition == 4)
+		{
+			//add to our list
+			userInputList.add(currentInput);
+			result = "Thank you for the comment";
+		}
 		else
 		{
-			//Talk aobut the suser
+			if(userInputChecker(currentInput))
+			{
+				
+			}
+			else
+			{
+				
+			}
 		}
 		updateChatCount();
 		return result;
+	}
+	
+	private boolean userInputChecker(String userInput)
+	{
+		boolean matchesInput = false;
+		
+		for(int loopCount = 0; loopCount < userInputList.size(); loopCount++)
+		{
+			if(userInput.equalsIgnoreCase(userInputList.get(loopCount)))
+			{
+				matchesInput = true;
+				userInputList.remove(loopCount);
+				loopCount--; //When removing, manually adjust loop counter back by one so no skipping.
+			}
+		}
+		return matchesInput;
 	}
 
 	/**
