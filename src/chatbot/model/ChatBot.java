@@ -124,92 +124,17 @@ public class ChatBot
 
 		if (getChatCount() < 7)
 		{
-			// Ask Questions about all data memebers here
-			// you will need ifs or a switch
-			if (getChatCount() == 0)
-			{
-				myUser.setUserName(currentInput);
-				result = "Good name " + myUser.getUserName() + " how old are you?";
-			}
-			else if (getChatCount() == 1)
-			{
-				int userAge = Integer.parseInt(currentInput);
-				myUser.setAge(userAge);
-			}
-			// continue for other user info fields
+			result = introduceUser(currentInput);
 		}
 
 		else if (currentInput != null && currentInput.length() > 0)
 		{
-			int randomPosition = (int) (Math.random() * 6);
-
-			if (randomPosition == 0)
-			{
-				// stringChecker here
-				if (stringChecker(currentInput))
-				{
-					result = "too long";
-				}
-				else
-				{
-					result = "short words";
-				}
-			}
-			else if (randomPosition == 1)
-			{
-				/**
-				 * If statement that checks if the input matches anything from
-				 * the content list.
-				 */
-				if (contentChecker(currentInput))
-				{
-					result = "wow, " + currentInput + " is something I personally love!";
-				}
-				else
-				{
-					result = "Meh, I don't really care about " + currentInput;
-				}
-			}
-			else if (randomPosition == 2)
-			{
-				/**
-				 * If statement that checks the input if it matches with
-				 * anything from the meme list.
-				 */
-				if (memeChecker(currentInput))
-				{
-					result = "wow, " + currentInput + " is a meme trololo!";
-				}
-				else
-				{
-					result = "not a meme, try again";
-				}
-			}
-			else if (randomPosition == 3)
-			{
-				// Talk about the user here
-			}
-			else if (randomPosition == 4)
-			{
-				// add to our list
-				userInputList.add(currentInput);
-				result = "Thank you for the comment";
-			}
-			else
-			{
-				if (userInputChecker(currentInput))
-				{
-
-				}
-				else
-				{
-
-				}
-			}
+			result = randomChatConversation(currentInput);
 		}
 		else
 		{
-
+			result = "Don't just sit there and lallygoog about. TYPE!";
+			chatCount--;
 		}
 		updateChatCount();
 		return result;
@@ -278,9 +203,8 @@ public class ChatBot
 		}
 		else
 			return tooLongString;
-
 	}
-
+	
 	/**
 	 * Creates the meme checker that takes input and check it with the meme
 	 * list.
@@ -301,7 +225,6 @@ public class ChatBot
 				isAMeme = true;
 			}
 		}
-
 		return isAMeme;
 	}
 
@@ -327,4 +250,108 @@ public class ChatBot
 		return okToQuit;
 
 	}
+	private String introduceUser(String input)
+	{
+		String userQuestion = "";
+		
+		// Ask Questions about all data memebers here
+					// you will need ifs or a switch
+					if (getChatCount() == 0)
+					{
+						myUser.setUserName(input);
+						userQuestion = "Good name " + myUser.getUserName() + " are you a wizard?";
+					}
+					else if (getChatCount() == 1)
+					{
+						boolean isWizard = Boolean.parseBoolean(input);
+						myUser.setWizard(isWizard);
+						userQuestion = "Wow, " + myUser.getUserName() + ", Maybe I can teach you my wizard skills. Do you need a cookie?";
+					}
+					else if (getChatCount() == 2)
+					{
+						boolean isNeedsACookie = Boolean.parseBoolean(input);
+						myUser.setNeedsACookie(isNeedsACookie);
+						userQuestion = "Well I have my cookies so that's all that matters.";
+					}
+					else if (getChatCount() == 3)
+					{
+						int userAge = Integer.parseInt(input);
+						myUser.setAge(userAge);
+					}
+					return userQuestion;
+	}
+	
+	private String randomChatConversation(String input)
+	{
+		String conversation = "";
+		
+		int randomPosition = (int) (Math.random() * 6);
+
+		if (randomPosition == 0)
+		{
+			// stringChecker here
+			if (stringChecker(input))
+			{
+				conversation = "too long";
+			}
+			else
+			{
+				conversation = "short words";
+			}
+		}
+		else if (randomPosition == 1)
+		{
+			/**
+			 * If statement that checks if the input matches anything from
+			 * the content list.
+			 */
+			if (contentChecker(input))
+			{
+				conversation = "wow, " + input + " is something I personally love!";
+			}
+			else
+			{
+				conversation = "Meh, I don't really care about " + input;
+			}
+		}
+		else if (randomPosition == 2)
+		{
+			/**
+			 * If statement that checks the input if it matches with
+			 * anything from the meme list.
+			 */
+			if (memeChecker(input))
+			{
+				conversation = "wow, " + input + " is a meme trololo!";
+			}
+			else
+			{
+				conversation = "not a meme, try again";
+			}
+		}
+		else if (randomPosition == 3)
+		{
+			// Talk about the user here
+		}
+		else if (randomPosition == 4)
+		{
+			// add to our list
+			userInputList.add(input);
+			conversation = "Thank you for the comment";
+		}
+		else
+		{
+			if (userInputChecker(input))
+			{
+
+			}
+			else
+			{
+
+			}
+			
+		}
+		return conversation;
+	}
+	
 }
