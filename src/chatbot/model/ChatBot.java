@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * The ChatBot model class. Used for checking and manipulating Strings.
  * 
  * @author rjon7928
- * @version 1.3 11/11/14
+ * @version 1.5 11/19/14 Updated process text
  */
 public class ChatBot
 {
@@ -343,15 +343,36 @@ public class ChatBot
 		{
 			if (userInputChecker(input))
 			{
-
+				conversation = "What a day, you removed it from the list";
 			}
 			else
 			{
-
+				conversation = "That wasn't in the conversation before";
 			}
 			
 		}
 		return conversation;
 	}
 	
+	private String userTopic(String userInput)
+	{
+		String userBasedResponse = "";
+		
+		int randomUserTopic = (int) (Math.random() * 6);
+		
+		switch(randomUserTopic)
+		{
+		case 1:
+			userBasedResponse = myUser.isWizard() + " Response to wizards";
+			break;
+		case 0:
+			userBasedResponse = myUser.getUserName() + " is a strange name to me.";
+			break;
+		default:
+			userBasedResponse = myUser.getAge() + " is quite old for me.";
+			break;
+		}
+		return userBasedResponse;
+		
+	}
 }
