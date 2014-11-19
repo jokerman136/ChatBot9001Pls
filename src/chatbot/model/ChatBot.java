@@ -259,7 +259,7 @@ public class ChatBot
 					if (getChatCount() == 0)
 					{
 						myUser.setUserName(input);
-						userQuestion = "Good name " + myUser.getUserName() + " are you a wizard?";
+						userQuestion = "Good name " + myUser.getUserName() + ", are you a wizard?";
 					}
 					else if (getChatCount() == 1)
 					{
