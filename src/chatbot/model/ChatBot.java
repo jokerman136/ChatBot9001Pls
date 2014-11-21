@@ -16,7 +16,6 @@ public class ChatBot
 	private ArrayList<String> contentList;
 	private ChatBotUser myUser;
 	private ArrayList<String> userInputList;
-	private double weight;
 
 	/**
 	 * Creates a ChatBot object with supplied name and initializes current #
@@ -198,7 +197,7 @@ public class ChatBot
 
 		if (input.length() > 21)
 		{
-			tooLongString = true;
+			// your mothertooLongString = true;
 			return tooLongString;
 		}
 		else
@@ -331,13 +330,24 @@ public class ChatBot
 		}
 		else if (randomPosition == 3)
 		{
-			// Talk about the user here
+			conversation = userTopic(input);
 		}
 		else if (randomPosition == 4)
 		{
 			// add to our list
 			userInputList.add(input);
 			conversation = "Thank you for the comment";
+		}
+		else if(randomPosition == 5)
+		{
+			if(mashChecker(input))
+			{
+				conversation = mashingDetect(input);
+			}
+			else
+			{
+				conversation = noMashDetect(input);
+			}
 		}
 		else
 		{
@@ -354,12 +364,45 @@ public class ChatBot
 		return conversation;
 	}
 	
+	private String mashingDetect(String input)
+	{
+		String mashed = "";
+		mashed = input.substring(input.length()/2);
+		mashed += input.substring(input.length()/2);
+		return mashed;
+	}
+	
+	private String noMashDetect(String input)
+	{
+		String noMashing = "Thanks for not going angry german kid on me";
+		if(input.length() > 1)
+		{
+		noMashing += input.substring(input.length()/3, input.length()/2);
+		}
+		return noMashing;
+	}
+	
+	/**
+	 * Checks for keyboard mashing
+	 * @param userInput User supplied text.
+	 * @return Whether mashing has been dectector.
+	 */
+	private boolean mashChecker(String userInput)
+	{
+		
+		boolean isMashing = false;
+		
+		if(userInput.indexOf("fasgd") > -1)
+		{
+			isMashing = true;
+		}
+		
+		return isMashing;
+	}
 	private String userTopic(String userInput)
 	{
-		String userBasedResponse = "";
-		
+		String userBasedResponse = "";	
 		int randomUserTopic = (int) (Math.random() * 6);
-		
 		switch(randomUserTopic)
 		{
 		case 1:
@@ -373,6 +416,5 @@ public class ChatBot
 			break;
 		}
 		return userBasedResponse;
-		
 	}
 }
