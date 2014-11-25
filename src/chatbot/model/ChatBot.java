@@ -10,8 +10,17 @@ import java.util.ArrayList;
  */
 public class ChatBot
 {
+	/**
+	 * The programmer supplied list of memes.
+	 */
 	private ArrayList<String> memeList;
+	/**
+	 * Name of the chatbot.
+	 */
 	private String name;
+	/**
+	 * The programmer specified content area for the contentChecker method.
+	 */
 	private int chatCount;
 	private ArrayList<String> contentList;
 	private ChatBotUser myUser;
@@ -125,7 +134,6 @@ public class ChatBot
 		{
 			result = introduceUser(currentInput);
 		}
-
 		else if (currentInput != null && currentInput.length() > 0)
 		{
 			result = randomChatConversation(currentInput);
