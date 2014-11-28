@@ -266,24 +266,31 @@ public class ChatBot
 					if (getChatCount() == 0)
 					{
 						myUser.setUserName(input);
-						userQuestion = "Good name " + myUser.getUserName() + ", are you a wizard?";
+						userQuestion = "Good name " + myUser.getUserName() + ", how old are you?";
 					}
 					else if (getChatCount() == 1)
+					{
+							int userAge = Integer.parseInt(input);
+						myUser.setAge(userAge);
+						userQuestion = "Well now, don't try and flatter yourself. So are you a wizard?";
+					}
+					else if (getChatCount() == 2)
 					{
 						boolean isWizard = Boolean.parseBoolean(input);
 						myUser.setWizard(isWizard);
 						userQuestion = "Wow, " + myUser.getUserName() + ", Maybe I can teach you my wizard skills. Do you need a cookie?";
 					}
-					else if (getChatCount() == 2)
-					{
-						boolean isNeedsACookie = Boolean.parseBoolean(input);
-						myUser.setNeedsACookie(isNeedsACookie);
-						userQuestion = "Well I have my cookies so that's all that matters.";
-					}
 					else if (getChatCount() == 3)
 					{
-						int userAge = Integer.parseInt(input);
-						myUser.setAge(userAge);
+						boolean needsACookie = Boolean.parseBoolean(input);
+						myUser.setNeedsACookie(needsACookie);
+						userQuestion = "Well I have my cookies so that's all that matters. Talking about cookies, how much do you weigh?";
+					}
+					else if (getChatCount() == 4)
+					{
+						double weight = Double.parseDouble(input);
+						myUser.setWeight(weight);
+						userQuestion = "";
 					}
 					return userQuestion;
 	}
