@@ -12,7 +12,7 @@ import chatbot.controller.ChatBotAppController;
 public class ChatBotPanel extends JPanel
 {
 	private ChatBotAppController baseController;
-	
+
 	private JButton firstButton;
 	private JTextField firstTextField;
 	private SpringLayout baseLayout;
@@ -76,6 +76,7 @@ public class ChatBotPanel extends JPanel
 	private void setupListeners()
 	{
 		firstButton.addActionListener(new ActionListener()
+
 		{
 			public void actionPerformed(ActionEvent click)
 			{
@@ -87,7 +88,34 @@ public class ChatBotPanel extends JPanel
 				firstTextField.requestFocus();
 			}
 		});
+		
+		saveButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String chat = chatArea.getText();
+				baseController.saveText(chat, true);
+			}
+		});
+		
+		loadButton.addActionListioner(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String savedChat = baseController.readTextFromFile();
+				if(savedChat.length()<1)
+				{
+					chatArea.setText("No text here bud.");
+				}
+				else
+				{
+					chatArea.setText(savedChat);
+				}	
+			}
+		});
+		
 	}
+
 	
 	public void showTextMessage(String userInput)
 	{
